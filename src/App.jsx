@@ -10,6 +10,7 @@ import JobsPage from './pages/JobsPage';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 import RegisterPage from './pages/RegisterPage';
+import ErrorPage from './pages/ErrorPage';
 
 import JobContextProvider from './ctx/JobContext';
 
@@ -25,6 +26,7 @@ const router=createBrowserRouter([
   {
     path:'/',
     element:<Layout />,
+    errorElement:<ErrorPage />,
     children:[
       {
         path:'/',

@@ -3,7 +3,7 @@ import { Link as RouterLink, } from "react-router-dom"
 
 function HomePage() {
   return (
-    <Grid container spacing={4} alignItems="center">
+    <Grid container sx={{p:2}} spacing={4} alignItems="center">
       <Grid item xs={12} md={6}>
         <Typography variant="h2" gutterBottom>
           Welcome to Career Craft

@@ -7,7 +7,7 @@ function RegisterForm() {
   const navigation = useNavigation()
 
   return (
-    <Box maxWidth={400} margin="auto">
+    <Box maxWidth={400} sx={{p:2}} margin="auto">
       <Typography variant="h4" gutterBottom>
         Register
       </Typography>
