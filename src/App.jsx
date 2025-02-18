@@ -4,15 +4,19 @@ import { CssBaseline,ThemeProvider,createTheme } from '@mui/material';
 
 import Layout from './Layout';
 
-import {loginAction, registerAction} from './utils/actions';
+import {loginAction, registerAction, editProfileAction} from './utils/actions';
 
 import JobsPage from './pages/JobsPage';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 import RegisterPage from './pages/RegisterPage';
 import ErrorPage from './pages/ErrorPage';
+import Profile from './pages/Profile';
+import LogOut from './pages/Logout';
+import EditProfilePage from './pages/EditProfilePage';
 
 import JobContextProvider from './ctx/JobContext';
+import {checkAuthUser,authProtectedLoader} from './utils/loader';
 
 import { deepOrange,grey,deepPurple,blueGrey,blue } from '@mui/material/colors';
 
@@ -26,6 +30,7 @@ const router=createBrowserRouter([
   {
     path:'/',
     element:<Layout />,
+    loader:checkAuthUser,
     errorElement:<ErrorPage />,
     children:[
       {
@@ -45,6 +50,21 @@ const router=createBrowserRouter([
         path:'/register',
         element:<RegisterPage />,
         action:registerAction
+      },
+      {
+        path:'/profile/:id',
+        element:<JobContextProvider><Profile /></JobContextProvider>,
+        loader:checkAuthUser
+      },
+      {
+        path:'/logout',
+        element:<LogOut />,
+      },
+      {
+        path:'/profile/:id/edit',
+        element:<EditProfilePage />,
+        action:editProfileAction,
+        loader:authProtectedLoader
       }
 
     ]

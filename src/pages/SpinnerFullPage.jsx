@@ -1,9 +1,9 @@
-import { CircularProgress } from "@mui/material";
+import { CircularProgress,Box } from "@mui/material";
 
 export default function SpinnerFullPage() {
     return (
-        <div className="w-full h-screen bg-zinc-900 p-40">
+        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
             <CircularProgress color="primary" size={100} />
-        </div>
+        </Box>
     )
 }

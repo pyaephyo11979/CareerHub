@@ -181,7 +181,8 @@ export async function editProfileAction({ request, params }) {
     const response = await fetch(`http://localhost:3000/api/user/update/${id}`, {
         method: "PATCH",
         headers: { 
-            "authorization": `Bearer ${JSON.parse(localStorage.getItem("token"))}`
+            "authorization": `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+            "Content-Type": "multipart/formData"
         },
         body: formData
     });

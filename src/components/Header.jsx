@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { Link as RouterLink,useNavigate } from "react-router-dom"
+import { useState } from "react";
+import { Link as RouterLink, useNavigate, useLoaderData } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
@@ -13,33 +13,43 @@ import {
   ListItemText,
   useMediaQuery,
   useTheme,
-} from "@mui/material"
-import MenuIcon from "@mui/icons-material/Menu"
-import Brightness4Icon from "@mui/icons-material/Brightness4"
-import Brightness7Icon from "@mui/icons-material/Brightness7"
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
 
-import { useApp } from "../App"
-
-const navItems = [
-  { label: "Home", path: "/" },
-  { label: "Jobs", path: "/jobs" },
-  { label: "Login", path: "/login" },
-]
+import { useApp } from "../App";
 
 function Header() {
-  const [drawerOpen, setDrawerOpen] = useState(false)
-  const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"))
-  const navigate = useNavigate()
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const user = useLoaderData("root"); 
+  const {setUser} = useApp();
+  
+  setUser(user);
 
-  const {mode,setMode} = useApp();
+  const navItems = [
+    { label: "Home", path: "/" },
+    { label: "Jobs", path: "/jobs" },
+    ...(user
+      ? [
+          { label: `${user.name}`, path: `/profile/${user._id}` },
+          { label: "Logout", path: "/logout" },
+        ]
+      : [{ label: "Login", path: "/login" }]),
+  ];
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const navigate = useNavigate();
+
+  const { mode, setMode } = useApp();
 
   const toggleDrawer = (open) => (event) => {
     if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
-      return
+      return;
     }
-    setDrawerOpen(open)
-  }
+    setDrawerOpen(open);
+  };
 
   const drawer = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
@@ -51,7 +61,7 @@ function Header() {
         ))}
       </List>
     </Box>
-  )
+  );
 
   return (
     <>
@@ -86,8 +96,14 @@ function Header() {
               ))}
             </Box>
           )}
-          <IconButton sx={{ ml: 1 }} onClick={() => {mode == "dark" ? setMode("light") : setMode("dark")}} color="inherit">
-            {mode == "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
+          <IconButton
+            sx={{ ml: 1 }}
+            onClick={() => {
+              mode === "dark" ? setMode("light") : setMode("dark");
+            }}
+            color="inherit"
+          >
+            {mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
           </IconButton>
         </Toolbar>
       </AppBar>
@@ -95,8 +111,7 @@ function Header() {
         {drawer}
       </Drawer>
     </>
-  )
+  );
 }
 
-export default Header
-
+export default Header;
