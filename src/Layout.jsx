@@ -22,7 +22,7 @@ export default function Layout(){
         <Box>
             <AppDrawer />
             <Header />
-            <Container maxWidth="sm" sx={{mt:4}}>
+            <Container sx={{ maxWidth: "100%", width: "100%", px: 2, mb: 4 }}>
                 {navigation.state == "submitting" && <SpinnerFullPage /> }
                 {navigation.state == "loading" && <SpinnerFullPage /> }
                 {navigation.state == "idle" && <Outlet />}

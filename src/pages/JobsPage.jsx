@@ -30,7 +30,7 @@ export default function JobsPage() {
         return (
             <Paper
                 component="form"
-                sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: "100%", mb: 4 }}
+                sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: "70%",mb: 4 }}
                 onSubmit={handleSearch}
             >
                 <InputBase
@@ -48,7 +48,7 @@ export default function JobsPage() {
     };
 
     return (
-        <Box sx={{ flexGrow: 1, padding: 2 }}>
+        <Box  sx={{ width: "100%", maxWidth: "100%", padding: 2}}>
             <SearchBar />
             <Jobs data={data} isLoading={isLoading} error={error} />
         </Box>
