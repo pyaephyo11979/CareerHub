@@ -35,7 +35,7 @@ function EditProfilePage() {
       <Typography variant="h4" gutterBottom>
         Edit Profile
       </Typography>
-      <Form method="post" encType="multipart/form-data">
+      <Form method="patch" encType="multipart/form-data">
         <TextField
           label="Username"
           variant="outlined"

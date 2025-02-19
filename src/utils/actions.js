@@ -45,7 +45,7 @@ export async function registerAction({ request }) {
 
     if (!response.ok)
         throw json(
-            { message: "Sorry: Could not create account try again." },
+            { message: response.message },
             { status: 500 }
         );
 
@@ -148,14 +148,19 @@ export async function createJobAction({ request }) {
 export async function editProfileAction({ request, params }) {
     const id = params.id;
     const user = JSON.parse(localStorage.getItem('user'));
-    
+
     const data = await request.formData();
     const username = data.get("username");
     const image = data.get("image");
     const phone = data.get("phone");
-    const skills = data.getAll("skills") || null;
     const cv = data.get("cv") || null;
 
+    // Handle skills properly
+    const skills = data.getAll("skills");
+    
+    // This should work, but let's be safe
+
+    console.log(skills)
     if (!username || !image || !phone) {
         throw json({ "message": "Please fill the inputs." }, { status: 500 });
     }
@@ -173,7 +178,16 @@ export async function editProfileAction({ request, params }) {
     formData.append("username", username);
     formData.append("image", image);
     formData.append("phone", phone);
-    formData.append("skills", JSON.stringify(skills));
+
+    // Append each skill separately
+    if (skills.length > 0) {
+        skills.forEach(skill => {
+            formData.append("skills", skill);
+        });
+    } else {
+        formData.append("skills", ""); // Ensure it's at least an empty array
+    }
+
     if (cv) {
         formData.append("cv", cv);
     }
@@ -182,7 +196,6 @@ export async function editProfileAction({ request, params }) {
         method: "PATCH",
         headers: { 
             "authorization": `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
-            "Content-Type": "multipart/formData"
         },
         body: formData
     });
@@ -200,6 +213,7 @@ export async function editProfileAction({ request, params }) {
     localStorage.setItem("user", JSON.stringify(userData));
     return redirect(`/profile/${id}`);
 }
+
 
 export async function changePasswordAction({request, params}) {
     const id = params.id;
