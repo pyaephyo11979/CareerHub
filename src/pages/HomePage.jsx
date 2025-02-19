@@ -19,7 +19,7 @@ function HomePage() {
       </Grid>
       <Grid item xs={12} md={6}>
         <Paper elevation={3} sx={{ p: 2 }}>
-          <img src=".\src\assets\career-hub-cover.svg" alt="Career Illustration" style={{ width: "100%", height: "auto" }} />
+          <img src={coverImage} alt="Career Illustration" style={{ width: "100%", height: "auto" }} />
         </Paper>
       </Grid>
     </Grid>
