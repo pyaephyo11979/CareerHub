@@ -16,7 +16,7 @@ function useJobDetails(postId) {
         const getJobData = async () => {
         
             try {
-                const response = await fetch(`http://localhsot:3000/api/post/get/${postId}`);
+                const response = await fetch(`https://wspapi.onrender.com/api/post/get/${postId}`);
                 if (!response.ok) {
                     throw new Error('Something went wrong');
                 } else {

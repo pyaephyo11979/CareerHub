@@ -14,7 +14,7 @@ export default function JobDetailContextProvider({children}){
     useEffect(()=>{
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/api/posts/get/${id}`);
+                const response = await fetch(`https://wspapi.onrender.com/api/posts/get/${id}`);
                 const result = await response.json();
                 setJob(result.post);
             } catch(error) {
