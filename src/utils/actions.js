@@ -7,7 +7,7 @@ import { useApp } from "../App";
 //BaseURLOnline: https://careercraftapi.onrender.com/api
 
 export async function registerAction({ request }) {
-    const BASE_URL = " http://localhost:3000/api";
+    const BASE_URL = " https://careercraftapi.onrender.com/api";
     const data = await request.formData();
 
     const username = data.get("username");
@@ -66,7 +66,7 @@ export async function loginAction({ request }) {
         password,
     };
     //Online URL: https://wspapi.onrender.com/api/user/login
-    const response = await fetch("http://localhost:3000/api/user/login", {
+    const response = await fetch("https://careercraftapi.onrender.com/api/user/login", {
         method: request.method,
         headers: {
             "Content-Type": "Application/json",
@@ -93,7 +93,7 @@ export async function createJobAction({ request }) {
     const user = JSON.parse(localStorage.getItem("user"));
     
     //OnlineURL: https://wspapi.onrender.com/api/post/create
-    let url =  "http://localhost:3000/api/post/create";
+    let url =  "https://careercraftapi.onrender.com/api/post/create";
 
     const title = data.get("title");
     const companyName = data.get("company_name");
@@ -120,7 +120,7 @@ export async function createJobAction({ request }) {
     
     //OnlineURL: https://wspapi.onrender.com/api/post/update/${id}
     if (request.method === "PATCH"){
-        url = `http://localhost:3000/api/post/update/${id}`
+        url = `https://careercraftapi.onrender.com/api/post/update/${id}`
     }
 
     const response = await fetch(
@@ -192,8 +192,11 @@ export async function editProfileAction({ request, params }) {
     if (cv) {
         formData.append("cv", cv);
     }
+    if(image){
+        formData.append("image",image)
+    }
 
-    const response = await fetch(`http://localhost:3000/api/user/update/${id}`, {
+    const response = await fetch(`https://careercraftapi.onrender.com/api/user/update/${id}`, {
         method: "PATCH",
         headers: { 
             "authorization": `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
@@ -234,7 +237,7 @@ export async function changePasswordAction({request, params}) {
     }
 
     //Online URL: https://wspapi.onrender.com/api/user/updatePassword/${id}
-    const changePasswordResponse = await fetch(`http://localhost:3000/api/user/updatePassword/${id}`, {
+    const changePasswordResponse = await fetch(`https://careercraftapi.onrender.com/api/user/updatePassword/${id}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "multipart/formData",
