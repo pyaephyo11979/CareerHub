@@ -1,6 +1,8 @@
 import { Typography, Button, Grid, Paper } from "@mui/material"
 import { Link as RouterLink, } from "react-router-dom"
 
+import coverImage from "../assets/career-hub-cover.svg"
+
 function HomePage() {
   return (
     <Grid container sx={{p:2}} spacing={4} alignItems="center">

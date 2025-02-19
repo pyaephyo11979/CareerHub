@@ -14,7 +14,7 @@ export default  function useUserDetail(userId){
 
         const getUserData = async ()=>{
             try{
-                const response = await fetch(`https://wspapi.onrender.com/api/user/get/${userId}`);
+                const response = await fetch(`https://careercraftapi.onrender.com/api/user/get/${userId}`);
                 if(!response.ok){
                     setError('User Not found, please try again');
                     throw new Error('User Not found, please try again');

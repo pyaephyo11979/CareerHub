@@ -14,7 +14,7 @@ export default function JobContextProvider({children}){
     const [isLoading,setIsLoading] = useState(true);
     const [error,setError] = useState('');
 
-    const url = "https://wspapi.onrender.com/api/post/get"
+    const url = "https://careercraftapi.onrender.com/api/post/get"
     useEffect(()=>{
         const fetchData = async () => {
             try {
