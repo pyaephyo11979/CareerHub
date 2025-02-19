@@ -35,7 +35,7 @@ function EditProfilePage() {
       <Typography variant="h4" gutterBottom>
         Edit Profile
       </Typography>
-      <Form method="patch" encType="multipart/form-data">
+      <Form method="patch" action={`/profile/${user._id}/edit`} encType="multipart/form-data">
         <TextField
           label="Username"
           variant="outlined"
@@ -56,9 +56,9 @@ function EditProfilePage() {
         />
         <Box sx={{ mt: 2, mb: 2 }}>
           <Typography variant="h6" gutterBottom>
-            Profile Image
+            Profile Image (Optional)
           </Typography>
-          <Input type="file" name="image" inputProps={{ accept: "image/*" }} required />
+          <Input type="file" name="image" inputProps={{ accept: "image/*" }}  />
         </Box>
         <Box sx={{ mt: 2, mb: 2 }}>
           <Typography variant="h6" gutterBottom>

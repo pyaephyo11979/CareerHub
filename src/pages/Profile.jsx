@@ -54,7 +54,7 @@ function Profile() {
     <Paper elevation={3} sx={{ p: 3 }}>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={4}>
-          <img src="/avatar-placeholder.png" alt="Profile" style={{ width: "100%", borderRadius: "50%" }} />
+          <img src={`${user.image}`} alt="Profile" style={{ width: "100%", borderRadius: "50%" }} />
         </Grid>
         <Grid item xs={12} sm={8}>
           <Typography variant="h4" gutterBottom>

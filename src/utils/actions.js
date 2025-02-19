@@ -4,7 +4,7 @@ import { useApp } from "../App";
 
 
 
-//BaseURLOnline: https://wspapi.onrender.com/api
+//BaseURLOnline: https://careercraftapi.onrender.com/api
 
 export async function registerAction({ request }) {
     const BASE_URL = " http://localhost:3000/api";
@@ -157,6 +157,7 @@ export async function editProfileAction({ request, params }) {
 
     // Handle skills properly
     const skills = data.getAll("skills");
+    console.log(skills)
     
     // This should work, but let's be safe
 
