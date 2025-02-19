@@ -11,7 +11,7 @@ export default function JobsPage() {
     const { data, setData, isLoading, error } = useJobContext();
     const [originalData, setOriginalData] = useState(data); 
     
-    function handleSearchValueChange(event){
+    const  handleSearchValueChange=(event)=>{
         setSearchTerm(event.target.value)
     }
 
@@ -23,27 +23,25 @@ export default function JobsPage() {
         jobNotFound = <h1 className="text-stone-500 text-center">Job not Found...</h1>
     }
 
-    const handleSearch = (e) => {
-        e.preventDefault();
-        if (!searchTerm) {
-            setData(originalData); // Reset data when search is empty
-            return;
-        }
+    // const handleSearch = (e) => {
+    //     e.preventDefault();
+    //     if (!searchTerm) {
+    //         setData(originalData); // Reset data when search is empty
+    //         return;
+    //     }
 
-        const filteredJobs = originalData.filter((job) =>
-            job.title.toLowerCase().includes(searchTerm.toLowerCase())
-        );
+    //     const filteredJobs = originalData.filter((job) =>
+    //         job.title.toLowerCase().includes(searchTerm.toLowerCase())
+    //     );
         
-        setData(filteredJobs);
-        console.log("Searching for:", searchTerm);
-    };
+    //     setData(filteredJobs);
+    //     console.log("Searching for:", searchTerm);
+    // };
 
     const SearchBar = () => {
         return (
             <Paper
-                component="form"
                 sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: "100%",mb: 4 }}
-                onSubmit={handleSearchValueChange}
             >
                 <InputBase
                     sx={{ ml: 1, flex: 1 }}
@@ -52,7 +50,7 @@ export default function JobsPage() {
                     value={searchTerm}
                     onChange={handleSearchValueChange}
                 />
-                <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
+                <IconButton  sx={{ p: "10px" }} aria-label="search">
                     <SearchIcon />
                 </IconButton>
             </Paper>

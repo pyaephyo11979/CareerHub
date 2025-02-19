@@ -8,7 +8,7 @@ function HomePage() {
     <Grid container sx={{p:2}} spacing={4} alignItems="center">
       <Grid item xs={12} md={6}>
         <Typography variant="h2" gutterBottom>
-          Welcome to Career Craft
+          Welcome to Career Hub
         </Typography>
         <Typography variant="h5" paragraph>
           Find your dream job or the perfect candidate for your company.

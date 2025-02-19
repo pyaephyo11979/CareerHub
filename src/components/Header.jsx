@@ -36,6 +36,7 @@ function Header() {
           { label: "Logout", path: "/logout" },
         ]
       : [{ label: "Login", path: "/login" }]),
+    ...(user && user.role === "employer" ? [{ label: "CreateJobPost", path: "/createpost" }] : []),
   ];
 
   const theme = useTheme();
@@ -85,7 +86,7 @@ function Header() {
             to="/"
             sx={{ flexGrow: 1, textDecoration: "none", color: "inherit" }}
           >
-            Career Craft
+            Career Hub
           </Typography>
           {!isMobile && (
             <Box sx={{ display: "flex" }}>
