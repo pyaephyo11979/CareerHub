@@ -51,7 +51,7 @@ function Profile() {
   }
 
   return (
-    <Paper elevation={3} sx={{ p: 3 }}>
+    <Paper elevation={3} sx={{ p: 3, my:1 }}>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={4}>
           <img src={`${user.image}`} alt="Profile" style={{ width: "100%", borderRadius: "50%" }} />
