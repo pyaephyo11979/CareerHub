@@ -16,7 +16,7 @@ export default function LoginForm(){
           Login
         </Typography>
         <Form method="post" action="/login">
-          <TextField label="Username or Email" variant="outlined" fullWidth margin="normal" name="email" required />
+          <TextField label=" Email" variant="outlined" fullWidth margin="normal" name="email" required />
           <TextField
             label="Password"
             variant="outlined"

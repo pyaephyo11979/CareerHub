@@ -31,7 +31,7 @@ const router=createBrowserRouter([
     path:'/',
     element:<Layout />,
     loader:checkAuthUser,
-    // errorElement:<ErrorPage />,
+    errorElement:<ErrorPage />,
     children:[
       {
         path:'/',
