@@ -92,7 +92,7 @@ function Profile() {
         </Grid>
       </Grid>
 
-      {isCurrentUser && (
+      {isCurrentUser && currentUser.role == "user" && (
         <>
           <Divider sx={{ my: 4 }} />
           <Typography variant="h5" gutterBottom sx={{ display: "flex", alignItems: "center" }}>

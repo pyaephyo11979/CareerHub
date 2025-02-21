@@ -92,12 +92,12 @@ export async function createJobAction({ request }) {
     const data = await request.formData();
     const user = JSON.parse(localStorage.getItem("user"));
     
-    //OnlineURL: https://wspapi.onrender.com/api/post/create
+    //OnlineURL: https://careercraftapi.onrender.com/api/post/create
     let url =  "https://careercraftapi.onrender.com/api/post/create";
 
     const title = data.get("title");
     const companyName = data.get("company_name");
-    const requirements = data.get("requirements");
+    const requirements = data.getAll("requirements");
     const position = data.get("position");
     // const address = data.get("address");
     const description = data.get("description");
@@ -118,7 +118,7 @@ export async function createJobAction({ request }) {
         uid: user._id,
     };
     
-    //OnlineURL: https://wspapi.onrender.com/api/post/update/${id}
+    //OnlineURL: https://careercraftapi.onrender.com/api/post/update/${id}
     if (request.method === "PATCH"){
         url = `https://careercraftapi.onrender.com/api/post/update/${id}`
     }

@@ -14,7 +14,8 @@ export default function JobDetailContextProvider({children}){
     useEffect(()=>{
         const fetchData = async () => {
             try {
-                const response = await fetch(`https://careercraftapi.onrender.com/api/posts/get/${id}`);
+                //https://careercraftapi.onrender.com
+                const response = await fetch(`https://careercraftapi.onrender.com/api/post/get/${id}`);
                 const result = await response.json();
                 setJob(result.post);
             } catch(error) {

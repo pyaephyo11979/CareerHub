@@ -38,7 +38,7 @@ export default function JobCard({ data }) {
             </CardContent>
 
             <CardActions>
-                <Button size="small" onClick={() => navigate(`/posts/${data._id}`)}>
+                <Button size="small" onClick={() => navigate(`/jobs/${data._id}`)}>
                     Learn More
                 </Button>
             </CardActions>

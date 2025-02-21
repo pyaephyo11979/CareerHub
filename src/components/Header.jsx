@@ -36,7 +36,7 @@ function Header() {
           { label: "Logout", path: "/logout" },
         ]
       : [{ label: "Login", path: "/login" }]),
-    ...(user && user.role === "employer" ? [{ label: "CreateJobPost", path: "/createpost" }] : []),
+    ...(user && user.role === "employer" ? [{ label: "CreateJobPost", path: "/jobs/create" }] : []),
   ];
 
   const theme = useTheme();
