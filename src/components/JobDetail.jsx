@@ -23,6 +23,8 @@ import useJobDetails from "../store/useJobDetail"
 import { formatDate } from "../utils/formatDate"
 import SpinnerFullPage from "../pages/SpinnerFullPage"
 
+import { useApp } from "../App"
+
 function JobDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
@@ -30,6 +32,7 @@ function JobDetail() {
   const [applicants, setApplicants] = useState([])
   const [isApplying, setIsApplying] = useState(false)
   const [openDialog, setOpenDialog] = useState(false)
+  const {globalMsg,setGlobalMsg} = useApp()
 
   const user = JSON.parse(localStorage.getItem("user"))
   const userId = jobData?.postedBy?.id
@@ -97,6 +100,7 @@ function JobDetail() {
     } catch (error) {
       console.error("Error during job application:", error)
     } finally {
+      setGlobalMsg("Application submitted successfully")
       setIsApplying(false)
     }
   }
@@ -166,6 +170,18 @@ function JobDetail() {
       <Typography variant="body2" color="textSecondary" gutterBottom>
         {applicants?.length} Applicants
       </Typography>
+      {user && user.role === "employer" && user?._id === jobData?.postedBy?.id && (
+        <List>
+          {applicants.map((applicant, index) => (
+            <ListItem key={index}>
+              <ListItemText primary={applicant.name} />
+              <Button onClick={()=>navigate(`/profile/${applicant.id}`)} variant="outlined" size="small">
+                  View User
+                </Button>
+            </ListItem>
+          ))}
+        </List>
+      )}
 
       <Typography variant="body2" color="textSecondary" gutterBottom>
         Posted on: {formatDate(jobData.createdAt)}
