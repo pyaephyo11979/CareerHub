@@ -6,4 +6,6 @@ export default function LogOut(){
     localStorage.clear();
     setUser(null);
     navigate('/')
+
+    window.location.reload();
 }
