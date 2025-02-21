@@ -16,7 +16,6 @@ function Profile() {
 
   const user = userData;
   const userPosts = data?.filter(post => post.postedBy && post.postedBy.id === id) || [];
-  console.log(data);
   
 
   const appliedJobs = currentUser?._id
