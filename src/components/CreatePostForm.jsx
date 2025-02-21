@@ -102,7 +102,7 @@ function CreatePostForm({ job = {}, isLoading = false }) {
                   variant="outlined"
                   value={req}
                   onChange={(e) => handleRequirementChange(index, e.target.value)}
-                  name={`requirements[]`}
+                  name={`requirements`}
                   placeholder={`Requirement ${index + 1}`}
                   sx={{ mr: 1 }}
                 />
