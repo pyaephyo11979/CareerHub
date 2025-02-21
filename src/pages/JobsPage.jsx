@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useApp } from "../App";
 import { Skeleton, Box, IconButton, Paper, InputBase } from "@mui/material";
 import { Search as SearchIcon } from "@mui/icons-material";
@@ -7,65 +7,58 @@ import Jobs from "../components/Jobs";
 
 export default function JobsPage() {
     const { setIsJobsPage } = useApp();
-    const [searchTerm, setSearchTerm] = useState("");
+    const searchTermRef = useRef(null); // Initialize as null for input reference
     const { data, setData, isLoading, error } = useJobContext();
-    const [originalData, setOriginalData] = useState(data); 
-    
-    const  handleSearchValueChange=(event)=>{
-        setSearchTerm(event.target.value)
-    }
+    const [filteredData, setFilteredData] = useState(data); // State for filtered data
+    const originalData = useRef(data); // Store original data
 
-    const filteredData = data.filter(post => post.title.toLowerCase().includes(searchTerm.toLowerCase()));
+    // Update originalData and filteredData when data changes
+    useEffect(() => {
+        originalData.current = data;
+        setFilteredData(data);
+    }, [data]);
 
-    let jobNotFound;
+    const handleSearch = () => {
+        const searchTerm = searchTermRef.current.value;
+        if (!searchTerm) {
+            setFilteredData(originalData.current); // Reset data when search is empty
+            return;
+        }
 
-    if (!filteredData.length && !isLoading && !error ){
-        jobNotFound = <h1 className="text-stone-500 text-center">Job not Found...</h1>
-    }
-
-    // const handleSearch = (e) => {
-    //     e.preventDefault();
-    //     if (!searchTerm) {
-    //         setData(originalData); // Reset data when search is empty
-    //         return;
-    //     }
-
-    //     const filteredJobs = originalData.filter((job) =>
-    //         job.title.toLowerCase().includes(searchTerm.toLowerCase())
-    //     );
-        
-    //     setData(filteredJobs);
-    //     console.log("Searching for:", searchTerm);
-    // };
-
-    const SearchBar = () => {
-        return (
-            <Paper
-                sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: "100%",mb: 4 }}
-            >
-                <InputBase
-                    sx={{ ml: 1, flex: 1 }}
-                    placeholder="Search Jobs"
-                    inputProps={{ "aria-label": "search jobs" }}
-                    value={searchTerm}
-                    onChange={handleSearchValueChange}
-                />
-                <IconButton  sx={{ p: "10px" }} aria-label="search">
-                    <SearchIcon />
-                </IconButton>
-            </Paper>
+        const filteredJobs = originalData.current.filter((job) =>
+            job.title.toLowerCase().includes(searchTerm.toLowerCase())
         );
+        setFilteredData(filteredJobs); // Update filtered data
     };
 
-    return (
-        <Box  sx={{ width: "100%", maxWidth: "100%", padding: 2}}>
-            <SearchBar />
-            {searchTerm
-                ? <Jobs data={filteredData} isLoading={isLoading} error={error} />
-                : <Jobs data={data} isLoading={isLoading} error={error} />
-            }
+    let jobNotFound;
+    if (!filteredData?.length && !isLoading && !error) {
+        jobNotFound = <h1 className="text-stone-500 text-center">Job not Found...</h1>;
+    }
 
-            { jobNotFound }
+    const SearchBar = () => (
+        <Paper
+            sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: "100%", mb: 4 }}
+            component={"form"}
+            onSubmit={handleSearch}
+        >
+            <InputBase
+                sx={{ ml: 1, flex: 1 }}
+                placeholder="Search Jobs"
+                inputProps={{ "aria-label": "search jobs" }}
+                inputRef={searchTermRef}// Trigger search on input change
+            />
+            <IconButton sx={{ p: "10px" }} aria-label="search" type="submit" onClick={handleSearch}>
+                <SearchIcon />
+            </IconButton>
+        </Paper>
+    );
+
+    return (
+        <Box sx={{ width: "100%", maxWidth: "100%", padding: 2 }}>
+            <SearchBar />
+            <Jobs data={filteredData} isLoading={isLoading} error={error} />
+            {jobNotFound}
         </Box>
     );
 }

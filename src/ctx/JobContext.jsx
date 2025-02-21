@@ -31,7 +31,7 @@ export default function JobContextProvider({children}){
     },[]);
 
     return(
-        <JobContext.Provider value={{data,isLoading,error}}>
+        <JobContext.Provider value={{data,setData,isLoading,error}}>
             {children}
         </JobContext.Provider>
     )
