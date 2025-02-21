@@ -104,7 +104,7 @@ function Profile() {
         </>
       )}
 
-      {currentUser.role === "employer" && userPosts.length > 0 && (
+      {isCurrentUser && currentUser.role === "employer" && userPosts.length > 0 && (
         <>
           <Divider sx={{ my: 4 }} />
           <Typography variant="h5" gutterBottom sx={{ display: "flex", alignItems: "center" }}>
