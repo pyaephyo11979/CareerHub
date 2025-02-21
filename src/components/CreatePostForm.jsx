@@ -21,7 +21,7 @@ import SpinnerFullPage from "../pages/SpinnerFullPage"
 function CreatePostForm({ job = {}, isLoading = false }) {
   const actionData = useActionData()
   const navigation = useNavigation()
-  const [requirements, setRequirements] = useState([])
+  const [requirements, setRequirements] = useState([""])
 
   // Set requirements only when job.requirements changes
   useEffect(() => {
