@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react" 
+import {useState, useEffect,useRef} from "react" 
 import { Typography, Paper, Grid, Button, Chip, List, ListItem, ListItemText, Divider, Skeleton } from "@mui/material";
 import { Link as RouterLink, useParams, useLoaderData } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
@@ -18,19 +18,18 @@ function Profile() {
   const { data } = useJobContext();
 
   const user = userData;
-  let imgUrl = user ? convertDriveUrl(user.image) : null;
+  const imgUrlRef = useRef(user ? convertDriveUrl(user.image) : null);
   useEffect(()=>{
     const img=new Image();
-    img.src=imgUrl;
+    img.src=imgUrlRef.current;
     img.onload=()=>{
       setIsLoad(true);
-      imgUrl=img.src;
     }
     img.onerror=()=>{
-      imgUrl="/profile.jpg";
+      imgUrlRef.current="/profile.jpg";
       setIsLoad(false);
     }
-  },[imgUrl])
+  },[user])
 
   const userPosts = data?.filter(post => post.postedBy && post.postedBy.id === id) || [];
   
@@ -73,7 +72,7 @@ function Profile() {
     <Paper elevation={3} sx={{ p: 3, my: 1 }}>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={4}>
-          <img src={imgUrl|| "/public/profile.jpg"} alt="Profile" style={{ width: "100%", borderRadius: "50%" }} />
+          <img src={imgUrlRef|| "/public/profile.jpg"} alt="Profile" style={{ width: "100%", borderRadius: "50%" }} />
         </Grid>
         <Grid item xs={12} sm={8}>
           <Typography variant="h4" gutterBottom>{user.name}</Typography>
