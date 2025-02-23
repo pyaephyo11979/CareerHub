@@ -1,18 +1,20 @@
 import { Card, CardActions, CardContent, Button, Typography, Avatar, Link } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import useUserDetail from "../store/useUserDetail";
+import { convertDriveUrl } from "../utils/misc";
 
 export default function JobCard({ data }) {
     const navigate = useNavigate();
     const { userData, isLoading, error } = useUserDetail(data.postedBy.id);
     const user = userData ? userData : null;
-
+    user? console.log(user.image):null;
+    const imgUrl= userData? convertDriveUrl(userData.image):null;
     return (
         <Card>
             <CardContent>
                 <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                     {!isLoading && !error ? (
-                        <Avatar alt={user?.name} src={user?.image} />
+                        <Avatar alt={user?.name} src={imgUrl} />
                     ) : (
                         <Avatar /> // Default Avatar when loading
                     )}

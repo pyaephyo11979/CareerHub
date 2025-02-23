@@ -151,7 +151,7 @@ export async function editProfileAction({ request, params }) {
 
     const data = await request.formData();
     const username = data.get("username");
-    const image = data.get("image");
+    const image = data.get("image") || null;
     const phone = data.get("phone");
     const cv = data.get("cv") || null;
 
@@ -177,7 +177,6 @@ export async function editProfileAction({ request, params }) {
 
     const formData = new FormData();
     formData.append("username", username);
-    formData.append("image", image);
     formData.append("phone", phone);
 
     // Append each skill separately
@@ -196,6 +195,7 @@ export async function editProfileAction({ request, params }) {
         formData.append("image",image)
     }
 
+    //https://careercraftapi.onrender.com
     const response = await fetch(`https://careercraftapi.onrender.com/api/user/update/${id}`, {
         method: "PATCH",
         headers: { 

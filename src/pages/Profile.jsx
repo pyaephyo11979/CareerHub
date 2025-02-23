@@ -2,6 +2,7 @@ import { Typography, Paper, Grid, Button, Chip, List, ListItem, ListItemText, Di
 import { Link as RouterLink, useParams, useLoaderData } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 import WorkIcon from "@mui/icons-material/Work";
+import { convertDriveUrl } from "../utils/misc";
 
 import JobCard from "../components/JobCard";
 
@@ -15,6 +16,7 @@ function Profile() {
   const { data } = useJobContext();
 
   const user = userData;
+  const imgUrl = user ? convertDriveUrl(user.image) : null;
   const userPosts = data?.filter(post => post.postedBy && post.postedBy.id === id) || [];
   
 
@@ -56,12 +58,24 @@ function Profile() {
     <Paper elevation={3} sx={{ p: 3, my: 1 }}>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={4}>
-          <img src={user.image || "/default-profile.png"} alt="Profile" style={{ width: "100%", borderRadius: "50%" }} />
+          <img src={imgUrl|| "/public/profile.jpg"} alt="Profile" style={{ width: "100%", borderRadius: "50%" }} />
         </Grid>
         <Grid item xs={12} sm={8}>
           <Typography variant="h4" gutterBottom>{user.name}</Typography>
           <Typography variant="body1">Email: {user.email}</Typography>
           <Typography variant="body1">Role: {user.role}</Typography>
+          {user.cv && (
+            <Button
+              href={user.cv}
+              target="_blank"
+              variant="outlined"
+              color="primary"
+              startIcon={<WorkIcon />}
+              sx={{ mt: 2 }}
+            >
+              View CV
+            </Button>
+          )}
 
           <Typography variant="h6" sx={{ mt: 2 }}>Skills</Typography>
           {user.skills?.length > 0 ? (

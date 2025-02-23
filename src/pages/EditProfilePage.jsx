@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useEffect } from "react"
 import { Typography, TextField, Button, Box, Chip, Paper, Input } from "@mui/material"
 import { Form, useActionData, useNavigation, useLoaderData, useParams } from "react-router-dom"
