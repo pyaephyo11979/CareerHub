@@ -64,9 +64,9 @@ function Profile() {
           <Typography variant="h4" gutterBottom>{user.name}</Typography>
           <Typography variant="body1">Email: {user.email}</Typography>
           <Typography variant="body1">Role: {user.role}</Typography>
-          {user.cv && (
+          {user.cvLink && (
             <Button
-              href={user.cv}
+              href={user.cvLink}
               target="_blank"
               variant="outlined"
               color="primary"
