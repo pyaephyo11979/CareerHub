@@ -1,3 +1,4 @@
+import {useState, useEffect} from "react" 
 import { Typography, Paper, Grid, Button, Chip, List, ListItem, ListItemText, Divider, Skeleton } from "@mui/material";
 import { Link as RouterLink, useParams, useLoaderData } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
@@ -13,10 +14,24 @@ function Profile() {
   const { id } = useParams();
   const currentUser = useLoaderData(); 
   const { userData, error, isLoading } = useUserDetail(id);
+  const [isLoad, setIsLoad] = useState(false);
   const { data } = useJobContext();
 
   const user = userData;
-  const imgUrl = user ? convertDriveUrl(user.image) : null;
+  let imgUrl = user ? convertDriveUrl(user.image) : null;
+  useEffect(()=>{
+    const img=new Image();
+    img.src=imgUrl;
+    img.onload=()=>{
+      setIsLoad(true);
+      imgUrl=img.src;
+    }
+    img.onerror=()=>{
+      imgUrl="/profile.jpg";
+      setIsLoad(false);
+    }
+  },[imgUrl])
+
   const userPosts = data?.filter(post => post.postedBy && post.postedBy.id === id) || [];
   
 
