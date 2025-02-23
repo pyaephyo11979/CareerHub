@@ -14,6 +14,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Skeleton
 } from "@mui/material"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import EditIcon from "@mui/icons-material/Edit"
@@ -24,6 +25,40 @@ import { formatDate } from "../utils/formatDate"
 import SpinnerFullPage from "../pages/SpinnerFullPage"
 
 import { useApp } from "../App"
+
+function JobSkeleton() {
+  return (
+    <Paper elevation={3} sx={{ p: 3, m: 2, bgcolor: "background.paper" }}>
+      <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+        <Box display="flex" alignItems="center" gap={2}>
+          <Skeleton variant="circular" width={56} height={56} />
+          <Skeleton variant="text" width={120} height={32} />
+        </Box>
+        <Box>
+          <Skeleton variant="circular" width={40} height={40} sx={{ mr: 1 }} />
+          <Skeleton variant="circular" width={40} height={40} />
+        </Box>
+      </Box>
+
+      <Skeleton variant="text" width="60%" height={40} />
+      <Skeleton variant="text" width="40%" height={32} sx={{ mb: 2 }} />
+
+      <Skeleton variant="text" width="100%" height={24} />
+      <Skeleton variant="text" width="100%" height={24} />
+      <Skeleton variant="text" width="80%" height={24} />
+
+      <Skeleton variant="text" width="40%" height={32} sx={{ mt: 2, mb: 1 }} />
+      <Skeleton variant="text" width="100%" height={24} />
+      <Skeleton variant="text" width="100%" height={24} />
+      <Skeleton variant="text" width="90%" height={24} />
+
+      <Skeleton variant="text" width="30%" height={24} sx={{ mt: 2 }} />
+      <Skeleton variant="text" width="20%" height={24} sx={{ mb: 2 }} />
+
+      <Skeleton variant="rectangular" width="100%" height={36} />
+    </Paper>
+  )
+}
 
 function JobDetail() {
   const { id } = useParams()
@@ -114,7 +149,7 @@ function JobDetail() {
   }
 
   if (isLoading) {
-    return <SpinnerFullPage />
+    return <JobSkeleton />
   }
 
   const position = jobData.position === "internship" ? jobData.position : `${jobData.position}-level`
