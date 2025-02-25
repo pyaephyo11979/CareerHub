@@ -10,8 +10,7 @@ const JOBS_PER_PAGE = 6;
 export default function JobsPage() {
     const { setIsJobsPage } = useApp();
     const searchTermRef = useRef(null); // Initialize as null for input reference
-    const { data, setData, isLoading, error } = useJobContext();
-    const [filteredData, setFilteredData] = useState(data); // State for filtered data
+    const { data, setData, isLoading, error } = useJobContext(); // State for filtered data
     const [filteredJobs, setFilteredJobs] = useState([])
     const [page, setPage] = useState(1)
     const originalData = useRef(data); // Store original data
