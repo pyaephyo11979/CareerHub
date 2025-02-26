@@ -63,7 +63,23 @@ function Profile() {
         <Grid item xs={12} sm={8}>
           <Typography variant="h4" gutterBottom>{user.name}</Typography>
           <Typography variant="body1">Email: {user.email}</Typography>
-          <Typography variant="body1">Role: {user.role}</Typography>
+          {user?.role == "employer" ? (
+            <>
+            <Typography variant="body1">Employer</Typography>
+            {
+              user.companyName && <Typography variant="body1">Company: {user.companyName}</Typography>
+            }
+            {
+              user.companyAddress && <Typography variant="body1">Address: {user.companyAddress}</Typography>
+            }
+            </>
+          ):(
+            <Typography variant="body1">Job Seeker</Typography>
+          )}
+          {!isCurrentUser && currentUser?.role == "employer" && (
+            <Typography variant="body1">Phone: +95{user.phone}</Typography>
+          )}
+          {isCurrentUser && <Typography variant="body1">Phone: +95{user.phone}</Typography>}
           {user.cvLink && (
             <Button
               href={user.cvLink}
@@ -77,11 +93,15 @@ function Profile() {
             </Button>
           )}
 
+          {user?.role !== "employer" && (
+            <>
           <Typography variant="h6" sx={{ mt: 2 }}>Skills</Typography>
           {user.skills?.length > 0 ? (
             user.skills.map((skill) => <Chip key={skill} label={skill} sx={{ mr: 1, mb: 1 }} />)
           ) : (
             <Typography variant="body2">No skills listed.</Typography>
+          )}
+          </>
           )}
 
           {isCurrentUser && (

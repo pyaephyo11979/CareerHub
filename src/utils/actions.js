@@ -153,6 +153,13 @@ export async function editProfileAction({ request, params }) {
     const username = data.get("username");
     const image = data.get("image") || null;
     const phone = data.get("phone");
+    const companyName = data.get("companyName") || null;
+    const addr1 = data.get("addr1") || "";
+    const addr2 = data.get("addr2") || null;
+    const city = data.get("city") || "";
+    const state = data.get("state") || "";
+    const zip = data.get("zip") || "";
+    const companyAddress = `${addr1}, ${addr2 && ` ${addr2},`} ${city}, ${state}, ${zip}`;
     const cv = data.get("cv") || null;
 
     // Handle skills properly
@@ -171,6 +178,8 @@ export async function editProfileAction({ request, params }) {
         name: username,
         image,
         phone,
+        companyName,
+        companyAddress,
         skills,
         cv
     };
@@ -178,6 +187,8 @@ export async function editProfileAction({ request, params }) {
     const formData = new FormData();
     formData.append("username", username);
     formData.append("phone", phone);
+    formData.append("companyName", companyName);
+    formData.append("companyAddress", companyAddress);
 
     // Append each skill separately
     if (skills.length > 0) {

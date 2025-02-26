@@ -58,35 +58,62 @@ function EditProfilePage() {
           </Typography>
           <Input type="file" name="image" inputProps={{ accept: "image/*" }}  />
         </Box>
-        <Box sx={{ mt: 2, mb: 2 }}>
-          <Typography variant="h6" gutterBottom>
-            CV (Optional)
-          </Typography>
-          <Input type="file" name="cv" inputProps={{ accept: ".pdf,.doc,.docx" }} />
-        </Box>
-        <Box sx={{ mt: 2, mb: 2 }}>
-          <Typography variant="h6" gutterBottom>
-            Skills
-          </Typography>
-          {skills.map((skill) => (
-            <Chip key={skill} label={skill} onDelete={() => handleDeleteSkill(skill)} sx={{ mr: 1, mb: 1 }} />
-          ))}
-        </Box>
-        <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+        {user?.role === "employer" && (
+          <>
           <TextField
-            label="Add Skill"
-            variant="outlined"
-            value={newSkill}
-            onChange={(e) => setNewSkill(e.target.value)}
-            sx={{ mr: 1 }}
-          />
-          <Button variant="contained" onClick={handleAddSkill}>
-            Add
-          </Button>
+          label="CompanyName"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          name="companyName"
+          defaultValue={user?.companyName || ""}
+          required
+        />
+        <Box sx={{mt:2,mb:2}}>
+          <Typography variant="h6" gutterBottom>
+            Company Address
+          </Typography>
+          <TextField label="Address Line 1 " variant="outlined" fullWidth margin="normal" name="addr1"  />
+          <TextField label="Address Line 2(Optional)" variant="outlined" fullWidth margin="normal" name="addr2"  />
+          <TextField label="City" variant="outlined" fullWidth margin="normal" name="city"  />
+          <TextField label="State/Division" variant="outlined" fullWidth margin="normal" name="state"  />
+          <TextField label="Zip" variant="outlined" fullWidth margin="normal" name="zip"  />
         </Box>
-        {skills.map((skill, index) => (
-          <input key={index} type="hidden" name="skills" value={skill} />
-        ))}
+          </>
+        )}
+        {user?.role !== "employer" &&(
+          <>
+                  <Box sx={{ mt: 2, mb: 2 }}>
+                  <Typography variant="h6" gutterBottom>
+                    CV (Optional)
+                  </Typography>
+                  <Input type="file" name="cv" inputProps={{ accept: ".pdf,.doc,.docx" }} />
+                </Box>
+                <Box sx={{ mt: 2, mb: 2 }}>
+                  <Typography variant="h6" gutterBottom>
+                    Skills
+                  </Typography>
+                  {skills.map((skill) => (
+                    <Chip key={skill} label={skill} onDelete={() => handleDeleteSkill(skill)} sx={{ mr: 1, mb: 1 }} />
+                  ))}
+                </Box>
+                <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+                  <TextField
+                    label="Add Skill"
+                    variant="outlined"
+                    value={newSkill}
+                    onChange={(e) => setNewSkill(e.target.value)}
+                    sx={{ mr: 1 }}
+                  />
+                  <Button variant="contained" onClick={handleAddSkill}>
+                    Add
+                  </Button>
+                </Box>
+                {skills.map((skill, index) => (
+                  <input key={index} type="hidden" name="skills" value={skill} />
+                ))}
+                </>
+        )}
         {actionData?.message && (
           <Typography color="error" sx={{ mt: 2 }}>
             {actionData.message}
