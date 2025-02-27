@@ -13,10 +13,11 @@ export default function JobsPage() {
     const { data, setData, isLoading, error } = useJobContext(); // State for filtered data
     const [filteredJobs, setFilteredJobs] = useState([])
     const [page, setPage] = useState(1)
-    const originalData = useRef(data); // Store original data
+    const [originalData,setOriginalData]=useState([]) // Store original data
 
     useEffect(() => {
         if (data) {
+            setOriginalData(data)
           setFilteredJobs(data)
         }
       }, [data])
@@ -25,7 +26,7 @@ export default function JobsPage() {
         e.preventDefault()
         const searchTerm = searchTermRef.current.value.toLowerCase()
         const filtered = data.filter(
-          (job) => job.title.toLowerCase().includes(searchTerm) || job.companyName.toLowerCase().includes(searchTerm),
+          (job) => job.title.toLowerCase().includes(searchTerm)
         )
         setFilteredJobs(filtered)
         setPage(1) // Reset to first page after search

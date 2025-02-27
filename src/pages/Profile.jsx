@@ -129,7 +129,7 @@ function Profile() {
             {appliedJobs.map((job) => (
               <ListItem key={job.id} disablePadding>
                 <ListItemText primary={job.title} secondary={job.company} sx={{ my: 1 }} />
-                <Button component={RouterLink} to={`/jobs/${job.id}`} variant="outlined" size="small">
+                <Button component={RouterLink} to={`/jobs/${job._id}`} variant="outlined" size="small">
                   View Job
                 </Button>
               </ListItem>
@@ -138,7 +138,7 @@ function Profile() {
         </>
       )}
 
-      {isCurrentUser && currentUser.role === "employer" && userPosts.length > 0 && (
+      {userPosts.length > 0 && (
         <>
           <Divider sx={{ my: 4 }} />
           <Typography variant="h5" gutterBottom sx={{ display: "flex", alignItems: "center" }}>
