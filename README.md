@@ -1,6 +1,8 @@
 # Career Hub (Frontend)  
 *A Modern Work Searching Platform*  
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/26ac0648-368e-4eb9-95d9-7b25f605304a/deploy-status)](https://app.netlify.com/sites/car33rhub/deploys)
+
 ## 🚀 Overview  
 Career Hub is a work-searching website that helps job seekers connect with potential employers. This repository contains the **frontend**, built using **React with Vite** for high performance and a seamless user experience.  
 
