@@ -23,6 +23,6 @@ Career Hub is a work-searching website that helps job seekers connect with poten
 ## 🚀 Installation & Setup  
 ```sh
 git clone https://github.com/yourusername/career-hub-frontend.git
-cd career-hub-frontend
+cd CareerHub
 npm install
 npm run dev
