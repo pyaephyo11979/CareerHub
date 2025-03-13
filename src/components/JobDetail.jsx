@@ -26,6 +26,9 @@ import SpinnerFullPage from "../pages/SpinnerFullPage"
 
 import { useApp } from "../App"
 
+import i18n from "../i18n";
+import {useTranslation} from 'react-i18next';
+
 function JobSkeleton() {
   return (
     <Paper elevation={3} sx={{ p: 3, m: 2, bgcolor: "background.paper" }}>
@@ -73,6 +76,8 @@ function JobDetail() {
   const userId = jobData?.postedBy?.id
   const { userData, error: imageError, isLoading: imageLoading } = useUserDetail(userId)
   const userDetails = userData || null
+
+  const {t,i18n} = useTranslation();
 
   useEffect(() => {
     if (jobData?.applicants) {
@@ -187,12 +192,12 @@ function JobDetail() {
       </Typography>
 
       <Typography variant="subtitle1" gutterBottom>
-        Description
+        {t("description")}
       </Typography>
       <Typography paragraph>{jobData.description}</Typography>
 
       <Typography variant="subtitle1" gutterBottom>
-        Requirements:
+        {t("requirements")}:
       </Typography>
       <List>
         {jobData.requirements.map((requirement, index) => (
@@ -203,7 +208,7 @@ function JobDetail() {
       </List>
 
       <Typography variant="body2" color="textSecondary" gutterBottom>
-        {applicants?.length} Applicants
+        {applicants?.length} {t("applicants")}
       </Typography>
       {user && user.role === "employer" && user?._id === jobData?.postedBy?.id && (
         <List>
@@ -230,7 +235,7 @@ function JobDetail() {
           onClick={() => jobApplyHandler(jobData._id)}
           disabled={isApplying}
         >
-          {isApplying ? "Applying..." : "Apply Now"}
+          {isApplying ? "Applying..." : t("apply")}
         </Button>
       )}
 

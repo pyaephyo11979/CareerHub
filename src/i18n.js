@@ -47,6 +47,10 @@ i18n.use(HttpApi).use(LanguageDetector).use(initReactI18next).init({
                 other:"Other",
                 haveAcc:"Already have an account?",
                 noAcc:"Don't have an account?",
+                description:"Description",
+                requirements:"Requirements",
+                applicants:"Applicants",
+                apply:"Apply Now",
             }
         },
         mm:{
@@ -80,6 +84,10 @@ i18n.use(HttpApi).use(LanguageDetector).use(initReactI18next).init({
                 other:"အခြား",
                 haveAcc:"အကောင့်ရှိပါသလား?",
                 noAcc:"အကောင့်မရှိသေးဘူးလား?",
+                description:"အကြောင်းအရာ",
+                requirements:"လိုအပ်ချက်များ",
+                applicants:"လျှောက်ထားသူများ",
+                apply:"လျှောက်ရန်",
             }
         }
     }
