@@ -3,6 +3,9 @@ import { Typography, TextField, Button, Box, Link, FormControl, InputLabel, Sele
 import { Form, useActionData, useNavigation } from "react-router-dom"
 import FormFooter from "./FormFooter"
 
+import i18n from "../i18n";
+import {useTranslation} from 'react-i18next';
+
 function RegisterForm() {
   const actionData = useActionData()
   const navigation = useNavigation()
@@ -11,44 +14,46 @@ function RegisterForm() {
   const [gender, setGender] = useState("")
   const [role, setRole] = useState("")
 
+  const {t,i18n} = useTranslation();
+
   return (
     <Box maxWidth={400} sx={{ p: 2 }} margin="auto">
       <Typography variant="h4" gutterBottom>
-        Register
+        {t("register")}
       </Typography>
       <Form method="post" action="/register">
-        <TextField label="Username" variant="outlined" fullWidth margin="normal" name="username" required />
-        <TextField label="Email" variant="outlined" fullWidth margin="normal" name="email" type="email" required />
-        <TextField label="Password" variant="outlined" fullWidth margin="normal" type="password" name="password" required />
-        <TextField label="Confirm Password" variant="outlined" fullWidth margin="normal" type="password" name="confirmation" required />
-        <TextField label="Phone" variant="outlined" fullWidth margin="normal" name="phone" required />
+        <TextField label={t("username")} variant="outlined" fullWidth margin="normal" name="username" required />
+        <TextField label={t("email")} variant="outlined" fullWidth margin="normal" name="email" type="email" required />
+        <TextField label={t("password")} variant="outlined" fullWidth margin="normal" type="password" name="password" required />
+        <TextField label={t("confirmPassword")} variant="outlined" fullWidth margin="normal" type="password" name="confirmation" required />
+        <TextField label={t("phone")} variant="outlined" fullWidth margin="normal" name="phone" required />
 
         {/* Gender Select */}
         <FormControl fullWidth margin="normal">
-          <InputLabel>Gender</InputLabel>
+          <InputLabel>{t("gender")}</InputLabel>
           <Select
             name="gender"
             value={gender}
             onChange={(e) => setGender(e.target.value)}
             required
           >
-            <MenuItem value="male">Male</MenuItem>
-            <MenuItem value="female">Female</MenuItem>
-            <MenuItem value="other">Other</MenuItem>
+            <MenuItem value="male">{t("male")}</MenuItem>
+            <MenuItem value="female">{t("female")}</MenuItem>
+            <MenuItem value="other">{t("other")}</MenuItem>
           </Select>
         </FormControl>
 
         {/* Role Select */}
         <FormControl fullWidth margin="normal">
-          <InputLabel>Role</InputLabel>
+          <InputLabel>{t("role")}</InputLabel>
           <Select
             name="role"
             value={role}
             onChange={(e) => setRole(e.target.value)}
             required
           >
-            <MenuItem value="user">Job Seeker</MenuItem>
-            <MenuItem value="employer">Employer</MenuItem>
+            <MenuItem value="user">{t("seeker")}</MenuItem>
+            <MenuItem value="employer">{t("employer")}</MenuItem>
           </Select>
         </FormControl>
 
@@ -67,7 +72,7 @@ function RegisterForm() {
           sx={{ mt: 2 }}
           disabled={navigation.state === "submitting"}
         >
-          {navigation.state === "submitting" ? "Registering..." : "Register"}
+          {navigation.state === "submitting" ? "Registering..." : t("register")}
         </Button>
       </Form>
       <FormFooter />

@@ -5,20 +5,24 @@ import { FormGroup,InputLabel,Button,Typography,Link,TextField,Box } from "@mui/
 import Inputs from "./Inputs";
 import FormFooter from "./FormFooter";
 
+import i18n from "../i18n";
+import {useTranslation} from 'react-i18next';
+
 import { useApp } from "../App";
 
 export default function LoginForm(){
     const actionData = useActionData();
     const navigation = useNavigate();
+    const {t,i18n} = useTranslation();
     return(
         <Box maxWidth={400} sx={{p:2}} margin="auto">
         <Typography variant="h4" gutterBottom>
-          Login
+          {t("login")}
         </Typography>
         <Form method="post" action="/login">
-          <TextField label=" Email" variant="outlined" fullWidth margin="normal" name="email" required />
+          <TextField label={t("email")} variant="outlined" fullWidth margin="normal" name="email" required />
           <TextField
-            label="Password"
+            label={t("password")}
             variant="outlined"
             fullWidth
             margin="normal"
@@ -40,7 +44,7 @@ export default function LoginForm(){
             sx={{ mt: 2 }}
             disabled={navigation.state === "submitting"}
           >
-            {navigation.state === "submitting" ? "Logging in..." : "Login"}
+            {navigation.state === "submitting" ? "Logging in..." : t("login")}
           </Button>
         </Form>
         <FormFooter />

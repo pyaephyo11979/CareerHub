@@ -38,13 +38,22 @@ i18n.use(HttpApi).use(LanguageDetector).use(initReactI18next).init({
                 cancel:"Cancel",
                 createPost:"Create Job Post",
                 more:"Learn More",
+                gender:"Gender",
+                role:"Role",
+                seeker:"Job Seeker",
+                employer:"Employer",
+                male:"Male",
+                female:"Female",
+                other:"Other",
+                haveAcc:"Already have an account?",
+                noAcc:"Don't have an account?",
             }
         },
         mm:{
             translation:{
                 welcome:"Career Hub မှကြိုဆိုပါတယ်",
                 findJob:"သင့်ရဲ့အိမ်မက်ထဲက အလုပ် ဒါမှမဟုတ် သင့်ကုမ္ပဏီအတွက် အသင့်တော်ဆုံးဝန်ထမ်းကို ရှာဖွေလိုက်ပါ",
-                exploreJobs:"အလုပ်များကြည့်ရှုပါ",
+                exploreJobs:"အလုပ်များကြည့်ရှုရန်",
                 register:"မှတ်ပုံတင်ပါ",
                 login:"ဝင်ရောက်ပါ",
                 username:"အသုံးပြုသူအမည်",
@@ -62,6 +71,15 @@ i18n.use(HttpApi).use(LanguageDetector).use(initReactI18next).init({
                 cancel:"မလုပ်ပါ",
                 createPost:"အလုပ်ခေါ်စာ ဖန်တီးရန်",
                 more:"ပိုမိုသိရှိရန်",
+                role:"ရာထူး",
+                seeker:"အလုပ်ရှာသူ",
+                employer:"အလုပ်ရှင်",
+                gender:"ကျား/မ",
+                male:"ယောင်္ကျားလေး",
+                female:"မိန်းကလေး",
+                other:"အခြား",
+                haveAcc:"အကောင့်ရှိပါသလား?",
+                noAcc:"အကောင့်မရှိသေးဘူးလား?",
             }
         }
     }
