@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react"
 import { Typography, TextField, Button, Box, Chip, Paper, Input } from "@mui/material"
 import { Form, useActionData, useNavigation, useLoaderData, useParams } from "react-router-dom"
+import i18n from "../i18n"
+import { useTranslation } from "react-i18next"
 
 function EditProfilePage() {
   const actionData = useActionData()
@@ -10,6 +12,8 @@ function EditProfilePage() {
 
   const [skills, setSkills] = useState(user?.skills || [])
   const [newSkill, setNewSkill] = useState("")
+
+  const {t,i18n} = useTranslation();
 
   useEffect(() => {
     if (user?.skills) {
@@ -35,7 +39,7 @@ function EditProfilePage() {
       </Typography>
       <Form method="patch" action={`/profile/${user._id}/edit`} encType="multipart/form-data">
         <TextField
-          label="Username"
+          label={t("Username")}
           variant="outlined"
           fullWidth
           margin="normal"
@@ -99,7 +103,7 @@ function EditProfilePage() {
                 </Box>
                 <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
                   <TextField
-                    label="Add Skill"
+                    label={t("Add Skill")}
                     variant="outlined"
                     value={newSkill}
                     onChange={(e) => setNewSkill(e.target.value)}

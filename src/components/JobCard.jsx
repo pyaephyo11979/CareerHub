@@ -2,6 +2,8 @@ import { Card, CardActions, CardContent, Button, Typography, Avatar, Link } from
 import { useNavigate } from "react-router-dom";
 import useUserDetail from "../store/useUserDetail";
 import { convertDriveUrl } from "../utils/misc";
+import i18n from '../i18n';
+import { useTranslation } from "react-i18next";
 
 export default function JobCard({ data }) {
     const navigate = useNavigate();
@@ -9,6 +11,7 @@ export default function JobCard({ data }) {
     const user = userData ? userData : null;
     user? console.log(user.image):null;
     const imgUrl= userData? convertDriveUrl(userData.image):null;
+    const {t,i18n} = useTranslation();
     return (
         <Card>
             <CardContent>
@@ -41,7 +44,7 @@ export default function JobCard({ data }) {
 
             <CardActions>
                 <Button size="small" onClick={() => navigate(`/jobs/${data._id}`)}>
-                    Learn More
+                    {t("more")}
                 </Button>
             </CardActions>
         </Card>

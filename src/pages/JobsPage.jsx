@@ -5,6 +5,9 @@ import { Search as SearchIcon } from "@mui/icons-material";
 import { useJobContext } from "../ctx/JobContext";
 import Jobs from "../components/Jobs";
 
+import i18n from "../i18n";
+import {useTranslation} from "react-i18next"
+
 const JOBS_PER_PAGE = 6;
 
 export default function JobsPage() {
@@ -14,6 +17,7 @@ export default function JobsPage() {
     const [filteredJobs, setFilteredJobs] = useState([])
     const [page, setPage] = useState(1)
     const [originalData,setOriginalData]=useState([]) // Store original data
+    const {t,i18n} = useTranslation();
 
     useEffect(() => {
         if (data) {
@@ -56,7 +60,7 @@ export default function JobsPage() {
         >
             <InputBase
                 sx={{ ml: 1, flex: 1 }}
-                placeholder="Search Jobs"
+                placeholder={t("search")}
                 inputProps={{ "aria-label": "search jobs" }}
                 inputRef={searchTermRef}// Trigger search on input change
             />
